@@ -274,7 +274,8 @@ def pytorch2prototxt(input_var, output_var):
         elif parent_type == 'MaxPool2dBackward':
             pooling_param = OrderedDict()
             pooling_param['pool'] = 'MAX'
-            pooling_param['kernel_size'] = func.kernel_size[0]
+            pooling_param['kernel_h'] = func.kernel_size[0]
+            pooling_param['kernel_w'] = func.kernel_size[1]
             pooling_param['stride'] = func.stride[0]
             # http://netaz.blogspot.com/2016/08/confused-about-caffes-pooling-layer.html
             padding = func.padding[0]
@@ -284,7 +285,8 @@ def pytorch2prototxt(input_var, output_var):
         elif parent_type == 'AvgPool2dBackward':
             pooling_param = OrderedDict()
             pooling_param['pool'] = 'AVE'
-            pooling_param['kernel_size'] = func.kernel_size[0]
+            pooling_param['kernel_h'] = func.kernel_size[0]
+            pooling_param['kernel_w'] = func.kernel_size[1]
             pooling_param['stride'] = func.stride[0]
             pooling_param['pad'] = func.padding[0]
             layer['pooling_param'] = pooling_param
